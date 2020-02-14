@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import datetime
+from _datetime import datetime
 from uuid import uuid4
 """
 import the modules in the code
@@ -10,11 +10,11 @@ class BaseModel:
     """
     The main class
     """
-    def __init__(self, id=None, created_at=None, update_at=None):
+    def __init__(self, *args, **kwargs):
         """ The constructor """
         self.id = str(uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """ the __str__ display the attributes of the class"""
@@ -23,7 +23,7 @@ class BaseModel:
 
     def save(self):
         """ updates the public instance attribute """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """ a dictionary containing all keys/values """
