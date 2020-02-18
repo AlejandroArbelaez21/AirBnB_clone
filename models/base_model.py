@@ -13,8 +13,6 @@ class BaseModel():
     The main class
     """
     id = str(uuid4())
-    #created_at = datetime.now()
-    #updated_at = datetime.now()
 
     def __init__(self, *args, **kwargs):
         """ The constructor """
@@ -22,9 +20,11 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key != '__class__':
                     if key == 'created_at':
-                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                        value = datetime.strptime(value,
+                                                  "%Y-%m-%dT%H:%M:%S.%f")
                     if key == 'updated_at':
-                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                        value = datetime.strptime(value,
+                                                  "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, value)
         else:
             self.updated_at = datetime.now()
@@ -35,7 +35,7 @@ class BaseModel():
     def __str__(self):
         """ the __str__ display the attributes of the class"""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
-                                      self.__dict__)
+                                     self.__dict__)
 
     def save(self):
         """ updates the public instance attribute """
@@ -49,4 +49,3 @@ class BaseModel():
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
         return my_dict
-

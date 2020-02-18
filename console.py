@@ -16,6 +16,7 @@ program console
 dict_class = {'BaseModel': BaseModel, 'User': User, 'Amenity': Amenity,
               'City': City, 'Place': Place, 'Review': Review, 'State': State}
 
+
 class HBNBCommand(cmd.Cmd):
     """console that contains the entry point of the command interpreter"""
     prompt = '(hbnb) '
@@ -46,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         if not args[0] in dict_class:
             print("** class doesn't exist **")
-        else:
+#        else:
 
     def do_show(self, line):
         args = split(line)
