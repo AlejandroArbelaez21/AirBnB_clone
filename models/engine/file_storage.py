@@ -1,12 +1,20 @@
 #!/usr/bin/python3
-#from models import storage
 import json
 from models.base_model import BaseModel
 import os
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 """
 file storage file containing FileStorage class
 """
+
+dict_class = {'BaseModel': BaseModel, 'User': User, 'Amenity': Amenity,
+              'City': City, 'Place': Place, 'Review': Review, 'State': State}
 
 
 class FileStorage():
@@ -40,9 +48,8 @@ class FileStorage():
         """deserialized the json file to objects only if json file exist"""
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as file:
-                new_dict = {}
                 new_dict = json.loads(file.read())
             for key, value in new_dict.items():
-                self.__objects[key] = BaseModel(**value)
+                self.__objects[key] = dict_class[value['__class__']](**value)
         except IOError:
             pass

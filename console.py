@@ -1,17 +1,25 @@
 #!/usr/bin/python3
 import cmd
+from shlex import split
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 """
 program console
 """
-
+dict_class = {'BaseModel': BaseModel, 'User': User, 'Amenity': Amenity,
+              'City': City, 'Place': Place, 'Review': Review, 'State': State}
 
 class HBNBCommand(cmd.Cmd):
     """console that contains the entry point of the command interpreter"""
     prompt = '(hbnb) '
-    Thomas = (globals()['BaseModel'])
-#    storage.save()
+#    Thomas = (globals()['BaseModel'])
 
     def do_quit(self, line):
         """Quit command to exit the program
@@ -32,22 +40,31 @@ class HBNBCommand(cmd.Cmd):
 #
 
     def do_create(self, line):
+        args = split(line)
         if len(line) == 0:
             print("** class name missing **")
-        elif line != 'BaseModel':
+            return False
+        if not args[0] in dict_class:
             print("** class doesn't exist **")
-        elif line == 'BaseModel':
-            print(BaseModel.id)
+        else:
 
     def do_show(self, line):
+        args = split(line)
         if len(line) == 0:
             print("** class name missing **")
-        elif line != 'BaseModel':
+            return False
+        if args[0] in dict_class:
+            if len(args) > 1:
+                objs = storage.all()
+                key = args[0] + '.' + args[1]
+                if key in objs:
+                    print(objs[key])
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
             print("** class doesn't exist **")
-        elif line == 'BaseModel':
-            print("** instance id missing **")
-#        elif line[2] is not BaseModel.id:
-#            print("** no instance found **")
 
     def do_destroy(self, line):
         if len(line) == 0:
