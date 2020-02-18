@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 from _datetime import datetime
 from uuid import uuid4
+from models import storage
+from models.engine.file_storage import FileStorage
 """
 import the modules in the code
 """
@@ -28,6 +30,7 @@ class BaseModel:
             self.updated_at = datetime.now()
             self.id = str(uuid4())
             self.created_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """ the __str__ display the attributes of the class"""
@@ -37,6 +40,8 @@ class BaseModel:
     def save(self):
         """ updates the public instance attribute """
         self.updated_at = datetime.now()
+        storage.save()
+
 
 
     def to_dict(self):

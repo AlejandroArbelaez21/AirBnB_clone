@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 #from models import storage
 import json
+from models.base_model import BaseModel
 
 """
 file storage file containing FileStorage class
@@ -34,11 +35,11 @@ class FileStorage():
 
     def reload(self):
         """deserialized the json file to objects only if json file exist"""
-        with open(self.__file_path, 'r', encoding='utf-8') as file:
-            try:
+        try:
+            with open(self.__file_path, 'r', encoding='utf-8') as file:
                 new_dict = {}
                 new_dict = json.loads(file.read())
                 for key, value in new_dict.items():
-                    self.__objects[key] = models.Class
-            except IOError:
-                return
+                    self.__objects[key] = BaseModel(value)
+        except IOError:
+            pass
