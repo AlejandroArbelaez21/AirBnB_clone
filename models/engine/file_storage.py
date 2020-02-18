@@ -15,7 +15,7 @@ class FileStorage():
     """
 #    dir_parent = os.getcwd()
 #    __file_path = dir_parent + 'file.json'
-    __file_path = '/file.json'
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self):
