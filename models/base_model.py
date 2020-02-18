@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 from _datetime import datetime
 from uuid import uuid4
-import storage
 """
 import the modules in the code
 """
