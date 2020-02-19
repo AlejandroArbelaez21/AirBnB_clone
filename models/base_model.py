@@ -9,9 +9,7 @@ import the modules in the code
 
 
 class BaseModel():
-    """
-    The main class
-    """
+    """ The main class """
 
     def __init__(self, *args, **kwargs):
         """ The constructor """
@@ -21,14 +19,15 @@ class BaseModel():
                     if key == 'created_at':
                         value = datetime.strptime(value,
                                                   "%Y-%m-%dT%H:%M:%S.%f")
-                    if key == 'updated_at':
+                    elif key == 'updated_at':
                         value = datetime.strptime(value,
                                                   "%Y-%m-%dT%H:%M:%S.%f")
-                    setattr(self, key, value)
+                    else:
+                        setattr(self, key, value)
         else:
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-            self.id = str(uuid4())
             models.storage.new(self)
 
     def __str__(self):
