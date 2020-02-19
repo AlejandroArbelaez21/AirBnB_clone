@@ -37,10 +37,11 @@ class HBNBCommand(cmd.Cmd):
         """ Line empty when write \n """
         pass
 
-    #    def help(self, line):
-    #        """shows the user the different commands the console has"""
+#   def help(self, line):
+#      """shows the user the different commands the console has"""
 
     def do_create(self, line):
+        """creates a new object from an existing class"""
         args = split(line)
         if len(line) == 0:
             print("** class name missing **")
@@ -54,6 +55,7 @@ class HBNBCommand(cmd.Cmd):
             print(getid)
 
     def do_show(self, line):
+        """displays the id of a object class"""
         args = split(line)
         if len(line) == 0:
             print("** class name missing **")
@@ -72,6 +74,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_destroy(self, line):
+        """Destroy a object from an existing class"""
         args = split(line)
         if len(line) == 0:
             print("** class name missing **")
@@ -91,6 +94,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_all(self, line):
+        """prints all the objects from existing classes"""
         args = split(line)
         new_list = []
         objs = storage.all()
