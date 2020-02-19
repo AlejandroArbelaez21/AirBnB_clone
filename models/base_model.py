@@ -12,7 +12,6 @@ class BaseModel():
     """
     The main class
     """
-    id = str(uuid4())
 
     def __init__(self, *args, **kwargs):
         """ The constructor """
