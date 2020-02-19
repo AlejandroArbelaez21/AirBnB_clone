@@ -15,7 +15,8 @@ program console
 """
 
 
-list_class = ["BaseModel", "User", "Amenity", "City", "Place", "Review", "State"]
+list_class = ["BaseModel", "User", "Amenity",
+              "City", "Place", "Review", "State"]
 
 
 class HBNBCommand(cmd.Cmd):
