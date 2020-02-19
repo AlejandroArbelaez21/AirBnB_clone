@@ -13,14 +13,15 @@ from models.review import Review
 """
 program console
 """
-dict_class = {'BaseModel': BaseModel, 'User': User, 'Amenity': Amenity,
-              'City': City, 'Place': Place, 'Review': Review, 'State': State}
+#dict_class = {'BaseModel': BaseModel, 'User': User, 'Amenity': Amenity,
+#              'City': City, 'Place': Place, 'Review': Review, 'State': State}
+list_class = ["BaseModel", "User", "Amenity", "City", "Place", "Review", "State"]
 
 
 class HBNBCommand(cmd.Cmd):
     """console that contains the entry point of the command interpreter"""
     prompt = '(hbnb) '
-#    Thomas = (globals()['BaseModel'])
+    #    Thomas = (globals()['BaseModel'])
 
     def do_quit(self, line):
         """Quit command to exit the program
@@ -36,25 +37,29 @@ class HBNBCommand(cmd.Cmd):
         """ Line empty when write \n """
         pass
 
-#    def help(self, line):
-#        """shows the user the different commands the console has"""
-#
+    #    def help(self, line):
+    #        """shows the user the different commands the console has"""
+    #
 
     def do_create(self, line):
         args = split(line)
         if len(line) == 0:
             print("** class name missing **")
             return False
-        if not args[0] in dict_class:
+        if not args[0] in list_class:
             print("** class doesn't exist **")
-#        else:
+        else:
+            classes = eval(args[0] + "()")
+            getid = getattr(classes, 'id')
+            storage.save()
+            print(getid)
 
     def do_show(self, line):
         args = split(line)
         if len(line) == 0:
             print("** class name missing **")
             return False
-        if args[0] in dict_class:
+        if args[0] in list_class:
             if len(args) > 1:
                 objs = storage.all()
                 key = args[0] + '.' + args[1]
@@ -68,20 +73,41 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_destroy(self, line):
+        args = split(line)
         if len(line) == 0:
             print("** class name missing **")
-        elif line != 'BaseModel':
+            return False
+        if args[0] in list_class:
+            if len(args) > 1:
+                objs = storage.all()
+                key = args[0] + '.' + args[1]
+                if key in objs:
+                    objs.pop(key)
+                    storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
             print("** class doesn't exist **")
-        elif line == 'BaseModel':
-            print("** instance id missing **")
 
     def do_all(self, line):
-        if len(line) == 0:
-            print("En proceso, todavia no se que poner")
-        elif line != 'BaseModel':
-            print("** class doesn't exist **")
-        elif line == 'BaseModel':
-            print(storage)
+        args = split(line)
+        new_list = []
+        objs = storage.all()
+        if len(line) > 1:
+            if args[0] in list_class:
+                for key, value in objs.items():
+                    class_split = key.split(".")
+                    if args[0] == class_split[0]:
+                        new_list.append(value.__str__())
+            else:
+                print("** class doesn't exist **")
+                return False
+        else:
+            for key, value in objs.items():
+                new_list.append(value.__str__())
+        print(new_list)
 
     def do_update(self, line):
         if len(line) == 0:
