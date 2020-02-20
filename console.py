@@ -158,7 +158,11 @@ class HBNBCommand(cmd.Cmd):
                     if class_split1[0] == class_split[0]:
                         cont += 1
                 print(cont)
-
+            elif class_split[1][:5] == 'show(':
+                if class_split[1][-1:] == ')':
+                    class_id = class_split[1][6:-2]
+                    show = class_split[0] + ' ' + class_id
+                    HBNBCommand.do_show(self, show)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
