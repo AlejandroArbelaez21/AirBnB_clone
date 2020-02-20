@@ -163,6 +163,11 @@ class HBNBCommand(cmd.Cmd):
                     class_id = class_split[1][6:-2]
                     show = class_split[0] + ' ' + class_id
                     HBNBCommand.do_show(self, show)
+            elif class_split[1][:8] == 'destroy(':
+                if class_split[1][-1:] == ')':
+                    class_id = class_split[1][9:-2]
+                    show = class_split[0] + ' ' + class_id
+                    HBNBCommand.do_destroy(self, show)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
