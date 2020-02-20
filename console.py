@@ -150,7 +150,15 @@ class HBNBCommand(cmd.Cmd):
                     class_split1 = key.split(".")
                     if class_split1[0] == class_split[0]:
                         new_list.append(value.__str__())
-        print(new_list)
+                print(new_list)
+            elif class_split[1] == 'count()':
+                cont = 0
+                for key, value in objs.items():
+                    class_split1 = key.split(".")
+                    if class_split1[0] == class_split[0]:
+                        cont += 1
+                print(cont)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
