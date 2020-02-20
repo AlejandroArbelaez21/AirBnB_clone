@@ -28,89 +28,30 @@ This was made it for running in a ```Ubuntu 14.04 LTS``` Linux enviroment.
  - Run the shell in interactive mode with ```./console.py```
 
 ### Usage
-The directory contents should be compiled with the following command:
+After excecuting the console a prompt will apear, there you can procede to write the different features mentioned below. The way to write a command goes like this:
 ```bash
-$ gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o hsh
-```
-The program may be used, in any C language program, just execute the file hsh.
-
-The way to write and execute command goes like this:
-```bash
-$ [WRITE COMMANDS]
+(hbnb) [WRITE COMMANDS]
 ```
 Press enter
 
-### Speacial Features to execute
- - cd: changes directory to the specified dir
- - help: prints the help page to understand more about the functions builtin
- - pwd: prints the current directory you are working on
- - env: prints the enviroment variables present in the shell
- - exit: Use this to exit properly from the simple shell
-
-### C language standard functions used
- - write.
- - access 
- - chdir 
- - execve
- - exit
- - fork
- - free
- - getline
- - isatty
- - malloc
- - perror
- - signal
- - strtok
- - wait
-
- 
-### Own functions used
- - _realloc
- - free_grid
- - _strcmp
- - _strncat
- - _strcpy
- - _strcat
- - concat
- - getpath
- - psh_cd
- - psh_help
- - psh_env
- - psh_exit
- - psh_tokenize
- - psh_execution
- - psh_init
- - psh_loop
- - psh_read_line
- - _putchar
- - psh_execution
- - _cealloc
- - free_grid
- - getpath
- - getthepath
- - add_slash
- - access_check
- - _strncpy
- - complete_command
+### Special Features to execute
+ -Create a new object (ex: a new User or a new Place
+ - Retrieve an object from a file, a database etc
+ - Do operations on objects (count, compute stats, etc)
+ - Update attributes of an object
+ - Destroy an object
+ - quit: Use this to exit properly from the console
 
 ### Example
 
-This happens when you run the command ```env``` after running this shell:
+This happens when you run the command ```all``` after running this in the console:
+
+The console retrieve and prints all objects previously created and stored in a json file.
 
 ```bash
-$ env
-USER=julien
-LANGUAGE=en_US
-SESSION=ubuntu
-COMPIZ_CONFIG_PROFILE=ubuntu
-SHLVL=1
-HOME=/home/julien
-C_IS=Fun_:)
-DESKTOP_SESSION=ubuntu
-LOGNAME=julien
-TERM=xterm-256color
-PATH=/home/julien/bin:/home/julien/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-DISPLAY=:0
+(hbnb) all
+["[BaseModel] (6570024a-9ad3-447f-89e0-5e163fa5085c) {'id': '6570024a-9ad3-447f-89e0-5e163fa5085c', 'name': 'Holberton', 'updated_at': datetime.datetime(2020, 2, 19, 19, 26, 45, 205348), 'my_number': 89, 'created_at': datetime.datetime(2020, 2, 19, 19, 26, 45, 205216)}", "[Amenity] (b435c30a-fdef-4fba-8df6-dbd0b240cc97) {'created_at': datetime.datetime(2020, 2, 19, 10, 20, 54, 12753), 'updated_at': datetime.datetime(2020, 2, 19, 10, 20, 54, 12669), 'id': 'b435c30a-fdef-4fba-8df6-dbd0b240cc97'}", "[City] (a04dbd88-179b-4be4-8125-df08242c91f4) {'created_at': datetime.datetime(2020, 2, 19, 10, 47, 4, 535639), 'updated_at': datetime.datetime(2020, 2, 19, 10, 47, 4, 535558), 'id': 'a04dbd88-179b-4be4-8125-df08242c91f4'}"]
+(hbnb)
 ```
 
 ### Bugs
@@ -121,7 +62,7 @@ Bugs are unknown for this shell.
 
 Tomás Mejía | [Github](https://github.com/towasme/) | [Twitter](https://twitter.com/towasme)
 
-Simón Parra | [Github](https://github.com/Simonster04/) | [Twitter](https://twitter.com/Simonster04)
+Alejandro Arbelaez | [Github](https://github.com/AlejandroArbelaez21) 
 
 ### License
 
