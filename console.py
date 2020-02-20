@@ -139,5 +139,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def default(self, line):
+        """ Method called when the command prefix is not recognized """
+        new_list = []
+        class_split = line.split(".")
+        objs = storage.all()
+        if class_split[0] in list_class:
+            if class_split[1] == 'all()':
+                for key, value in objs.items():
+                    class_split1 = key.split(".")
+                    if class_split1[0] == class_split[0]:
+                        new_list.append(value.__str__())
+        print(new_list)
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
