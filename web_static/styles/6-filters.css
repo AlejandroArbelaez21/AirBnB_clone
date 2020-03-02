@@ -74,5 +74,6 @@ h2 {
 }
 
 li {
+    list-style-type: none;
     margin: 10px;
 }
